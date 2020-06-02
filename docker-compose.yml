@@ -18,9 +18,8 @@ services:
 #      - default
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: openjdk:15-jdk
+    command: java -jar ./build/libs/my-application.jar
     depends_on:
       - db
     ports:
@@ -29,8 +28,9 @@ services:
       - 8080
     working_dir: /var/www
     volumes:
-      - ./:/app:ro
+      - ./:/var/www:ro
     environment:
+      JAVA_OTPS: " -server -Xms4g -Xmx4g -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+UseStringDeduplication "
       DB_HOST: db #override env
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}

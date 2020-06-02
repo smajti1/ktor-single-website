@@ -14,15 +14,11 @@ Next run
 
     ./gradlew build
 
-    docker-compose build --no-cache
-
-use --no-cache if you rerun `./gradlew build` to refresh .jar file
-
     docker-compose up --detach
 
 Or just run:
 
-    ./gradlew build && docker-compose build --no-cache && docker-compose down && docker-compose up --detach
+    ./gradlew build && docker-compose down && docker-compose up --detach
 
 Create table user and insert some users into db
 ```
