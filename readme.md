@@ -16,9 +16,15 @@ Next run
 
     docker-compose up --detach
 
-Or just run:
+#Development
 
-    ./gradlew build && docker-compose down && docker-compose up --detach
+Run in another terminal continuous build application
+
+    ./gradlew --continuous build
+
+When gradle end build just restart container
+
+    docker-compose restart web
 
 Create table user and insert some users into db
 ```

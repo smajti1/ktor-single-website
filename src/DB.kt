@@ -3,6 +3,7 @@ package io.ktor.samples.hello
 import com.google.gson.Gson
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -32,4 +33,15 @@ fun getTopFiveUserData(): String {
         json = Gson().toJson(c)
     }
     return json
+}
+
+fun getUserById(userId: Int): Users? {
+    var user: Users? = null
+    transaction {
+        val result = User.select { User.id.eq(userId) }.firstOrNull()
+        if (result != null) {
+            user = Users(id = result[User.id], name = result[User.name], email = result[User.email])
+        }
+    }
+    return user
 }

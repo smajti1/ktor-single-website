@@ -1,0 +1,9 @@
+<html>
+{% if user != null %}
+<h2>Hello, {{ user.name }}!</h2>
+
+Your email address is {{ user.email }}
+{% else %}
+User not found change user_id
+{% endif %}
+</html>
